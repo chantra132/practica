@@ -112,7 +112,7 @@ nginx::resource::location { 'practica.aplicaciones.web/index.php':
 -  Ejecutamos ``` git checkout -- public/index.php``` y ``` git checkout -- src/Routing.php```
 -  Para colocarnos en la rama que necesitamos y ejecutamos ``` git checkout Alex_RoutingInterface```
 -  Para verificar si funciona nos tenemos que posicionar en el archivo Routing.php y cambiar el nombre de la función **getController** o **getAction**.
-- Si antes de modificar nada no aparece error y al modificar estos nombres y cargar la pagina en el navegador de internet nos dá un error **Class Routing contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (RoutingInterface::getController) in <b>/var/www/practica.aplicaciones.web/src/Routing.php** quiere decir que está correcto.
+- Si antes de modificar nada no aparece error y al modificar estos nombres y cargar la pagina en el navegador de internet nos dá un error **Class Routing contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (RoutingInterface::getController)** quiere decir que está correcto.
 
 
 ## Punto 4: RAMA Jordi-HTML_Response
