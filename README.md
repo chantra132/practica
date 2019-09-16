@@ -1,40 +1,84 @@
-# PARTE 1
+# **PARTE 1**
 
-## **Para generar un nuevo virtual-host se ha de acceder al archivo backend.pp alojado en la ruta C:\Users\Carmen\backend\puppet\manifests.**
+##**Punto 1. Generar nuevo Virtual-host**
+Para generar un nuevo virtual-host se ha de acceder al archivo **backend.pp** alojado en la ruta **C:\Users\Carmen\backend\puppet\manifests.**
 
-### Se realiza copia de las líneas 54 a la 97 y se copian a la línea 98.
-Una vez copiado se modifica y se añade:
-##### Línea 98: 
+Se añade el siguiente código en la **línea 98**
 ```
 nginx::resource::server{"practica.aplicaciones.web":
-```
-###### Línea 101:
-```
-www_root  => "/var/www/practica.aplicaciones.web/public",
-```
-##### Línea 106 :
-```
+  use_default_location => false,
+  listen_port => 80,
+  www_root  => "/var/www/practica.aplicaciones.web/public",
+  index_files => [ 'index.html', 'index.php' ],
+}
+
+# Qué hará nginx por defecto con este "server"
 nginx::resource::location{ 'practica.aplicaciones.web/':
-```
-##### Línea 108: 
-```
+  location    => "/",
   server      => "practica.aplicaciones.web",
-```
-##### Línea 123:
-```
+  # Esta configuración pertenece al dominio que digamos
+  ensure         => present,
+  # Esta configuración debe quedar escrita siempre
+  # en algún fichero de configuración de nginx 
+  # por lo tanto puppet creará un archivo en /etc/nginx/conf.d/
+   autoindex   => 'off',
+  # No se listará el contenido de la carpeta
+  location_cfg_append =>{
+    try_files => '$uri /index.php$is_args$args' 
+  },
+  index_files => ['index.php']
+}
+
+
 nginx::resource::location { 'practica.aplicaciones.web/index.php':
-```
-##### Línea 125:
-```
+  location       => "~ ^/index\.php(/|$)",
   server         => "practica.aplicaciones.web",
-```
-## Se levanta servidor realizando **vagrant up**.
-## Una vez realizado se realiza **vagrant provision--provision-with=puppet**
-## Se abre aplicación notepad como administrador y se abre el archivo **host**. y se añade el nombre del dominio a la linea donde disponemos de la IP de nuestro servidor. 
-#####**192.168.33.10 aplicaciones.web proyecto.web tuttifrutti.shop practica.aplicaciones.web**
-## Una vez realizado provision, nos vamos a github y copiamos el enlace 
-## En GitBush tenemos que realizar es un ```vagrant ssh``` desde la carpeta **/backend/** para acceder a nuestro servidor e introducirnos dentro de la carpeta del dominio. **/var/www/practica.aplicaciones.web**.
-## Una vez ubicados en esta carpeta se ejecuta ``` composer dump-autoload```.
+  ensure         => present,
+  fastcgi        => "${url_servidor_aplicaciones}",
+  # location of fastcgi 
+  fastcgi_split_path => '^(.+\.php)(/.*)$',
+
+  # Info para el servidor de aplicaciones
+  #location_cfg_append =>{
+  # Info para el servidor de aplicaciones
+  # fastcgi_split_path_info => '^(.+\.php)(/.*)$'
+  #},
+  fastcgi_param  => {
+    'APP_ENV'          => 'dev',
+    'SCRIPT_FILENAME'  => '$realpath_root$fastcgi_script_name',
+    'DOCUMENT_ROOT'    => '$realpath_root'
+  }
+}
+``` 
+- Mediante Git Bash se accede a la carpeta backend donde disponemos del servidor virtual. 
+    ``cd backend``
+- En caso de tener el servidor parado, se levanta servidor realizando la siguiente ejecución:
+    ``vagrant up`` 
+- En caso de tenerlo ya arrancado, pasa directamente al siguiente punto. 
+- Una vez arrancado el servidor y posicionado en la carpeta se ejecuta:
+    ``vagrant provision--provision-with=puppet``
+
+##Punto 2 Añadir el dominio en el archivo host
+- Se abre aplicación notepad como administrador (botón derecho encima del icono - abrir como administrador)
+- Se abre Archivo - abrir y se busca la carpeta c:\windows\system32\driver\etc
+- En la parte baja a la derecha de la ventana donde estamos, tenemos que seleccionar **todos los archivos (*.*).
+- Entonces nos aparecerá un listado de archivos para seleccionar. Seleccionamos **hosts** y le damos a abrir. 4
+- Una vez abierto, en la última linea añadimos:
+  ``192.168.33.10 practica.aplicaciones.web``
+- Cerramos y guardamos cambio. 
+
+##Punto 3 Despliegue de la aplicación. 
+- Se accede al enlace http://github.com/temple/Aplicaciones_web
+- A la derecha nos encontramos un botón verde donde indica **clone or download**
+- Se copia el enlace que aparece al desplegarse. 
+- Nos vamos a Git Bash 
+
+##Punto 4 Comprobación de carga de la aplicación.  
+- Desde la carpeta \backend ejecutamos:
+``vagrant ssh``
+- Una vez accedemos por ssh a nuestro servidor accedemos a la carpeta **/var/www/practica.aplicaciones.web** y ejecutamos:
+``composer dump-autoload`` para que el archivo composer que dispone la aplicación se ejecute. 
+- Desde un explorador de internet se verifica que añadiendo el dominio carga la aplicación. 
 
 
 # PARTE 2
