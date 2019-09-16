@@ -1,6 +1,6 @@
 # **PARTE 1**
 
-##**Punto 1. Generar nuevo Virtual-host**
+## Punto 1. Generar nuevo Virtual-host
 Para generar un nuevo virtual-host se ha de acceder al archivo **backend.pp** alojado en la ruta **C:\Users\Carmen\backend\puppet\manifests.**
 
 Se añade el siguiente código en la **línea 98**
@@ -58,7 +58,7 @@ nginx::resource::location { 'practica.aplicaciones.web/index.php':
 - Una vez arrancado el servidor y posicionado en la carpeta se ejecuta:
     ``vagrant provision--provision-with=puppet``
 
-##Punto 2 Añadir el dominio en el archivo host
+## Punto 2 Añadir el dominio en el archivo host
 - Se abre aplicación notepad como administrador (botón derecho encima del icono - abrir como administrador)
 - Se abre Archivo - abrir y se busca la carpeta c:\windows\system32\driver\etc
 - En la parte baja a la derecha de la ventana donde estamos, tenemos que seleccionar **todos los archivos (*.*).
@@ -67,13 +67,13 @@ nginx::resource::location { 'practica.aplicaciones.web/index.php':
   ``192.168.33.10 practica.aplicaciones.web``
 - Cerramos y guardamos cambio. 
 
-##Punto 3 Despliegue de la aplicación. 
+## Punto 3 Despliegue de la aplicación. 
 - Se accede al enlace http://github.com/temple/Aplicaciones_web
 - A la derecha nos encontramos un botón verde donde indica **clone or download**
 - Se copia el enlace que aparece al desplegarse. 
 - Nos vamos a Git Bash 
-
-##Punto 4 Comprobación de carga de la aplicación.  
+ 
+## Punto 4 Comprobación de carga de la aplicación.  
 - Desde la carpeta \backend ejecutamos:
 ``vagrant ssh``
 - Una vez accedemos por ssh a nuestro servidor accedemos a la carpeta **/var/www/practica.aplicaciones.web** y ejecutamos:
