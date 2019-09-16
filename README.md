@@ -83,39 +83,59 @@ nginx::resource::location { 'practica.aplicaciones.web/index.php':
 
 # PARTE 2
 
-##**RAMA Musa-front**
-### Nos vamos a Git Bash y accedemos a la carpeta del dominio */backend/www/practica.aplicaciones.web*.
-### Para colocarnos en la rama que necesitamos y ejecutamos ``` git checkout Musa-front```.
-### Una vez en la rama de Musa-front, nos colocamos en el navegador de internet y escribimos el dominio **practica.aplicaciones.web**.
-### Verificamos que no carga nada en pantalla.
-### Se revisa index.php y se elimina las líneas de la 3 a la 10.
-### Se vuelve a verificar funcionamiento en el navegador de internet añadiendo la ruta del dominio /home y en el html que muestra se ve el resultado del ```var_dump($this->request1_uri."\r");``` de la línea 24 del archivo **FrontController.php**
-### Al tener que modificar index.php **no está cumpliendo objetivo**.
+## Punto 1: RAMA Musa-front
+
+-  Nos vamos a Git Bash y accedemos a la carpeta del dominio ``/backend/www/practica.aplicaciones.web``
+-  Para colocarnos en la rama que necesitamos y ejecutamos ``` git checkout Musa-front```
+-  Una vez en la rama de Musa-front, nos colocamos en el navegador de internet y escribimos el dominio ``practica.aplicaciones.web``
+-  Verificamos que no carga nada en pantalla.
+-  Se revisa index.php y se elimina las líneas de la 3 a la 10.
+-  Se vuelve a verificar funcionamiento en el navegador de internet añadiendo la ruta del dominio /home y en el html que muestra se ve el resultado del ```var_dump($this->request1_uri."\r");``` de la línea 24 del archivo **FrontController.php**
+- **Al tener que modificar index.php no está cumpliendo objetivo**.
 
 
-##**RAMA walaa-Routing**
-### Para acceder a la rama de walaa-Routing se ha de descartar los cambios realizados para la verificación de Musa-front.
-### Para ello vamos a Git Bash y accedemos a la carpeta del dominio */backend/www/practica.aplicaciones.web*.
-### Ejecutamos ``` git checkout -- public/index.php```.
-### Para colocarnos en la rama que necesitamos y ejecutamos ``` git checkout walaa-Routing```.
-### Para verificar que $routes de Routing carga la ruta de config.php o de routes.json se añade en la linea 23 del archivo Routing.php un ```var_dump($this->routes);```.
-### Una vez añadido y guardado,  se abre el dominio desde navegador de internet. 
-### No se visualiza nada ya que en index.php dispone de las líneas 3 y 4 que hace que la aplicación pare y no realice la funcion de FrontController. 
-### Si se comentan dichas líneas, aparece un error de sintaxis en Routing.php, en la línea 22 falta un **;**.
-### En caso de solventar el problema, el var_dump($this->routes) nos entrega un booleano con valor true, por lo que **no nos está cumpliendo el objetivo**.
+## Punto 2: RAMA walaa-Routing
+
+-  Para acceder a la rama de walaa-Routing se ha de descartar los cambios realizados para la verificación de Musa-front. Para ello vamos a Git Bash y accedemos a la carpeta del dominio **/backend/www/practica.aplicaciones.web**.
+-  Ejecutamos ``` git checkout -- public/index.php``` 
+-  Para colocarnos en la rama que necesitamos y ejecutamos ``` git checkout walaa-Routing```
+-  Para verificar que $routes de Routing carga la ruta de config.php o de routes.json se añade en la linea 23 del archivo Routing.php un ```var_dump($this->routes);```.
+-  Una vez añadido y guardado,  se abre el dominio desde navegador de internet. 
+-  No se visualiza nada ya que en index.php dispone de las líneas 3 y 4 que hace que la aplicación pare y no realice la funcion de FrontController.  Si se comentan dichas líneas, aparece un error de sintaxis en Routing.php, en la línea 22 falta un **;**.
+-  En caso de solventar el problema, el var_dump($this->routes) nos entrega un booleano con valor true, por lo que **no nos está cumpliendo el objetivo**.
 
 
-##**RAMA Alex_RoutingInterface**
-### Para acceder a la rama de Alex_RoutingInterface se ha de descartar los cambios realizados para la verificación de walaa-Routing.
-### Para ello vamos a Git Bash y accedemos a la carpeta del dominio */backend/www/practica.aplicaciones.web*.
-### Ejecutamos ``` git checkout -- public/index.php``` y ``` git checkout -- src/Routing.php```
-### Para colocarnos en la rama que necesitamos y ejecutamos ``` git checkout Alex_RoutingInterface```.
-### Para verificar si funciona nos tenemos que posicionar en el archivo Routing.php y cambiar el nombre de la función **getController** o **getAction**.
-### Si al modificar estos nombres y cargar la pagina en el navegador de internet nos dá un error **Class Routing contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (RoutingInterface::getController) in <b>/var/www/practica.aplicaciones.web/src/Routing.php** quiere decir que está correcto.
+## Punto 3: RAMA Alex_RoutingInterface
+
+- Para acceder a la rama de Alex_RoutingInterface se ha de descartar los cambios realizados para la verificación de walaa-Routing.
+-  Para ello vamos a Git Bash y accedemos a la carpeta del dominio **/backend/www/practica.aplicaciones.web**.
+-  Ejecutamos ``` git checkout -- public/index.php``` y ``` git checkout -- src/Routing.php```
+-  Para colocarnos en la rama que necesitamos y ejecutamos ``` git checkout Alex_RoutingInterface```
+-  Para verificar si funciona nos tenemos que posicionar en el archivo Routing.php y cambiar el nombre de la función **getController** o **getAction**.
+- Si antes de modificar nada no aparece error y al modificar estos nombres y cargar la pagina en el navegador de internet nos dá un error **Class Routing contains 1 abstract method and must therefore be declared abstract or implement the remaining methods (RoutingInterface::getController) in <b>/var/www/practica.aplicaciones.web/src/Routing.php** quiere decir que está correcto.
 
 
-##**RAMA Jordi-HTML_Response**
-###Para acceder a la rama de Jordi-HTML_Response se ha de descartar los cambios realizados para la verificación de Alex_RoutingInterface.
-### Para ello vamos a Git Bash y accedemos a la carpeta del dominio */backend/www/practica.aplicaciones.web*.
-### Ejecutamos ``` git checkout -- public/index.php``` y ``` git checkout -- src/Routing.php```
-### Para colocarnos en la rama que necesitamos y ejecutamos ``` git checkout Jordi-HTML_Response```.
+## Punto 4: RAMA Jordi-HTML_Response
+
+- Para acceder a la rama de Jordi-HTML_Response se ha de descartar los cambios realizados para la verificación de Alex_RoutingInterface.
+-  Para ello vamos a Git Bash y accedemos a la carpeta del dominio **/backend/www/practica.aplicaciones.web**.
+-  Ejecutamos ``` git checkout -- public/index.php``` y ``` git checkout -- src/Routing.php```
+-  Para colocarnos en la rama que necesitamos y ejecutamos ``` git checkout Jordi-HTML_Response```
+-  Al cargar dominio /home en el explorador de internet nos carga la vista creada y llamada en HomeController.
+-  También carga la vista si se carga dominio/home/premium. 
+-  **Funciona correctamente.**
+
+## Punto 5: RAMA kyomi_AJAXform
+
+-  Para acceder a la rama de kyomi_AJAXform ejecutamos: ` git checkout Jordi-HTML_Response`
+-  Accedemos desde navegador de internet a la ruta ** practica.aplicaciones.web/contact**
+-  **Vemos que no funciona ya que no carga el formulario y nos dá error.**
+
+## Punto 6: RAMA Carmen-errors
+
+-  Para acceder a la rama de Carmen-errors ejecutamos: ` git checkout Carmen-errors`
+-  Accedemos desde navegador de internet a la ruta ** practica.aplicaciones.web/404**
+-  Se realiza botón derecho encima del html que carga y damos a **inspeccionar elemento**.
+-  Nos ponemos en la pestaña red o Network (dependiendo del navegador que usemos)
+-  Se verifica que en la primera columna llamada **estado** nos devuelve código 404.
+-  **Funciona correctamente ya que responde con el código de error correcto. **
